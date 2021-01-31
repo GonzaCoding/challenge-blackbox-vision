@@ -1,10 +1,13 @@
 import React from 'react';
-import {View, Button} from 'react-native';
+import {View, Button, TouchableOpacity, Text} from 'react-native';
+import {styles} from './styles';
 
-const CustomButton = ({label}) => {
+const CustomButton = ({label, skin}) => {
   return (
     <View>
-      <Button title={label} />
+      <TouchableOpacity style={styles.normal}>
+        <Text style={styles.normalText}>{label}</Text>
+      </TouchableOpacity>
     </View>
   );
 };
