@@ -2,20 +2,48 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import CustomButton from '../CustomButton';
 
-const Question = () => {
+import {styles} from './styles';
+import {QuestionType} from '../Question/type';
+import Difficulty from '../Difficulty';
+
+interface Props {
+  question: QuestionType;
+  index: number;
+}
+
+const Question: React.FC<Props> = ({question, index}) => {
+  const {
+    category,
+    type,
+    difficulty,
+    question: question_text,
+    correct_answer,
+    incorrect_answers,
+  } = question;
+
+  const answers: string[] = incorrect_answers.concat(correct_answer).sort();
+
+  const getButtonContainerStyle = () =>
+    type === 'multiple'
+      ? styles.buttonContainerMultiple
+      : styles.buttonContainerBoolean;
+
   return (
-    <View>
-      <View>
-        <Text>Question 1 of 10</Text>
+    <View style={styles.container}>
+      <View style={styles.titleContainer}>
+        <Text style={styles.titleText}>Question {index} of 10</Text>
       </View>
-      <View>
-        <Text>What is it?</Text>
+      <View style={styles.questionContainer}>
+        <View style={styles.questionTextContainer}>
+          <Text style={styles.questionText}>{question_text}</Text>
+        </View>
+        <Text style={styles.questionInfo}>{category}</Text>
       </View>
-      <View>
-        <CustomButton label="Option 11" />
-        <CustomButton label="Option 22" />
-        <CustomButton label="Option 3" />
-        <CustomButton label="Option 4" />
+      <Difficulty difficulty={difficulty} />
+      <View style={[styles.buttonContainer, getButtonContainerStyle()]}>
+        {answers.map((answer) => (
+          <CustomButton key={answer} label={answer} skin="normal" />
+        ))}
       </View>
     </View>
   );
