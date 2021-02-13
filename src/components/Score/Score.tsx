@@ -10,10 +10,19 @@ interface Props {
 }
 
 const Score: React.FC<Props> = ({score, onRestart}) => {
+  let phrase = '';
+  if (score === 0) {
+    phrase = 'Wow...';
+  } else if (score > 0 && score < 40) {
+    phrase = 'Great!';
+  } else {
+    phrase = 'Congratulations!!!';
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
-        <Text style={styles.titleText}>Congratulations!</Text>
+        <Text style={styles.titleText}>{phrase}</Text>
       </View>
       <View style={styles.scoreContainer}>
         <View style={styles.scoreTextContainer}>
