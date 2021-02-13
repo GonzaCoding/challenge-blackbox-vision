@@ -6,10 +6,10 @@ import {styles} from './styles';
 
 interface Props {
   score: number;
-  //onRestart: () => void;
+  onRestart: () => void;
 }
 
-const Score: React.FC<Props> = ({score}) => {
+const Score: React.FC<Props> = ({score, onRestart}) => {
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
@@ -21,7 +21,7 @@ const Score: React.FC<Props> = ({score}) => {
         </View>
       </View>
       <View style={styles.buttonContainer}>
-        <Text>Restart</Text>
+        <CustomButton label="Restart" onPress={onRestart} />
       </View>
     </View>
   );

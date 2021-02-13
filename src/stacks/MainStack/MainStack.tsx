@@ -11,11 +11,15 @@ const MainStack = () => {
   const [score, setScore] = useState<number>(0);
 
   useEffect(() => {
-    getQuiz();
-  }, []);
+    if (currentQuestion === 0) {
+      getQuiz();
+    }
+  }, [currentQuestion]);
 
   const getQuiz = () => {
     fetchQuiz().then((questions) => {
+      setCurrentQuestion(0);
+      setScore(0);
       setQuiz(questions);
     });
   };
@@ -42,7 +46,7 @@ const MainStack = () => {
   }
 
   if (currentQuestion === 10) {
-    return <Score score={score} />;
+    return <Score score={score} onRestart={getQuiz} />;
   }
 
   return (
