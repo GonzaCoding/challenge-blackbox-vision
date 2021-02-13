@@ -7,5 +7,11 @@ export const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
+    alignItems: 'center',
+  },
+  spinnerText: {
+    color: 'white',
+    fontSize: 30,
+    fontWeight: '800',
   },
 });
