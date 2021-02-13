@@ -43,12 +43,7 @@ const Question: React.FC<Props> = ({question, index, onAnswer}) => {
       <Difficulty difficulty={difficulty} />
       <View style={[styles.buttonContainer, getButtonContainerStyle()]}>
         {answers.map((answer) => (
-          <CustomButton
-            key={answer}
-            label={answer}
-            skin="normal"
-            onAnswer={onAnswer}
-          />
+          <CustomButton key={answer} label={answer} onPress={onAnswer} />
         ))}
       </View>
     </View>
