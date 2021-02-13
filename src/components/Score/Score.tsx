@@ -13,10 +13,11 @@ const Score: React.FC<Props> = ({score, onRestart}) => {
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
-        <Text style={styles.titleText}>You scored:</Text>
+        <Text style={styles.titleText}>Congratulations!</Text>
       </View>
       <View style={styles.scoreContainer}>
         <View style={styles.scoreTextContainer}>
+          <Text style={styles.scoreText}>You scored:</Text>
           <Text style={styles.scoreText}>{score} points</Text>
         </View>
       </View>
