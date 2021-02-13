@@ -9,9 +9,10 @@ import Difficulty from '../Difficulty';
 interface Props {
   question: QuestionType;
   index: number;
+  onAnswer: (choice: string) => void;
 }
 
-const Question: React.FC<Props> = ({question, index}) => {
+const Question: React.FC<Props> = ({question, index, onAnswer}) => {
   const {
     category,
     type,
@@ -42,7 +43,12 @@ const Question: React.FC<Props> = ({question, index}) => {
       <Difficulty difficulty={difficulty} />
       <View style={[styles.buttonContainer, getButtonContainerStyle()]}>
         {answers.map((answer) => (
-          <CustomButton key={answer} label={answer} skin="normal" />
+          <CustomButton
+            key={answer}
+            label={answer}
+            skin="normal"
+            onAnswer={onAnswer}
+          />
         ))}
       </View>
     </View>
