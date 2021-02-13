@@ -31,7 +31,7 @@ const Score: React.FC<Props> = ({score, onRestart}) => {
         </View>
       </View>
       <View style={styles.buttonContainer}>
-        <CustomButton label="Restart" onPress={onRestart} />
+        <CustomButton label="Try again!" onPress={onRestart} />
       </View>
     </View>
   );
