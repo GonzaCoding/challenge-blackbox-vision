@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {View, Text} from 'react-native';
 import Question from '../../components/Question';
 import Score from '../../components/Score';
+import CustomSpinner from '../../components/CustomSpinner';
 import {QuestionType} from '../../components/Question/type';
 import {fetchQuiz} from '../../services/QuizService';
 
@@ -9,18 +10,19 @@ const MainStack = () => {
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
   const [quiz, setQuiz] = useState<QuestionType[]>([]);
   const [score, setScore] = useState<number>(0);
+  const [fetching, setFetching] = useState<boolean>(true);
 
   useEffect(() => {
-    if (currentQuestion === 0) {
-      getQuiz();
-    }
-  }, [currentQuestion]);
+    getQuiz();
+  }, []);
 
   const getQuiz = () => {
+    setFetching(true);
     fetchQuiz().then((questions) => {
+      setQuiz(questions);
       setCurrentQuestion(0);
       setScore(0);
-      setQuiz(questions);
+      setFetching(false);
     });
   };
 
@@ -41,8 +43,8 @@ const MainStack = () => {
     }
   };
 
-  if (quiz.length === 0) {
-    return null;
+  if (fetching) {
+    return <CustomSpinner />;
   }
 
   if (currentQuestion === 10) {
